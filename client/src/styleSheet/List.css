@@ -1,0 +1,20 @@
+.categoriesList {
+    display:flex
+}
+
+.categoriesList > ImageCard {
+      padding: 2rem;
+      border: "none"
+}
+
+.eventsList{
+    display:flex
+}
+
+Container {
+    display:flex
+}
+
+Col {
+    flex :1
+}

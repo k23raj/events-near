@@ -1,0 +1,27 @@
+ _id": "5d6a4623f01fcf3c741c0120" ===music 
+
+
+
+ 	"username":"vinay23",
+	"email":"vinay23@gmail.com",
+	"password":"pass123",
+
+
+
+	"_id": "5d6d0522a0875b2cec2ca9dd",
+        "name": "Banglore",
+
+
+
+		{
+"name":"Udit Ever Green Songs",
+"category":"5d6a4623f01fcf3c741c0120",
+"description":"Udit Ever Green Songs",
+"maxTicket":"5",
+"startDate":"2019-09-02",
+"endDate":"2019-09-03",
+"seatCount":"50",
+"tktPrice":"300",
+"city":"5d6d0522a0875b2cec2ca9dd",
+"address":"BDA complex,Jayanagar"
+}
