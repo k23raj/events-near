@@ -4,30 +4,36 @@ import {
     Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button
 } from 'reactstrap'
-import { Link } from 'react-router-dom'
-import myImage from './../../images/event.png'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'reactstrap';
 import '../../styleSheet/List.css'
+import myImage from './../../images/Udit-Narayan-500x500.jpg'
 function EventShowCard(props) {
+
 
     return (
         <div>
-
+            
             {!_.isEmpty(props.event) && (
                 <div>
-                    <Row>
-                        <Col sm="6">
-                            <Card body>
-                                <CardTitle>Special Title Treatment</CardTitle>
-                                <CardImg bottom width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                    <Row >
+                        <Col sm={{ size: 4, offset: 2 }}>
+                            <Card body style={{ padding: 0, sizes: "256x256" }}>
+                                <CardImg bottom width="100%" src={myImage} height="auto" />
                             </Card>
                         </Col>
-                        <Col sm="6">
+                        <Col sm={{ size: 4 }}>
                             <Card body>
-                                <CardTitle>Special Title Treatment</CardTitle>
-                                <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
-                                <Button>Go somewhere</Button>
+
+                                <CardTitle>{props.event.name}</CardTitle>
+                                <CardTitle>{props.event.user.name}</CardTitle>
+                                <CardText>{props.event.description}</CardText>
+                                <CardText> start Date:{props.event.date.startDate}
+                                    End Date:{props.event.date.endDate}</CardText>
+                                <CardText>{props.event.date.endDate}</CardText>
+                                <CardText>{props.event.location.address},
+                                    {props.event.location.city.name}</CardText>
+                                <Button >Book Tickets</Button>
                             </Card>
                         </Col>
                     </Row>
@@ -40,6 +46,7 @@ function EventShowCard(props) {
 
 const mapStateToProps = (state, props) => {
     return {
+        user: state.user,
         event: state.events.find(event => event._id == props.match.params.id)
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import _ from 'lodash'
-import { FaUserCircle } from "react-icons/fa";
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import {
@@ -14,8 +13,9 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
-  import {startRemoveUser} from '../../actions/user'
+  DropdownItem
+} from 'reactstrap';
+import { startRemoveUser } from '../../actions/user'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -31,51 +31,55 @@ class NavBar extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
-  logouthandle=()=>{
-   this.props.dispatch(startRemoveUser())
+  logouthandle = () => {
+    this.props.dispatch(startRemoveUser())
+
+    if (_.isEmpty(this.props.user)) {
+      this.props.history.push('/login')
+    }
+
   }
   render() {
     return (
       <div>
-        <Navbar style={{backgroundColor: '#607D8B'}} light expand="md">
-          <NavbarBrand  href="/" style={{color:"white"}}>Events</NavbarBrand>
+        <Navbar style={{ backgroundColor: '#607D8B' }} light expand="md">
+          <NavbarBrand href="/" style={{ color: "white" }}>Events</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-{/*  <NavItem>
+              {/*  <NavItem>
                 <NavLink href="/components/" style={{color:"white"}}>UserName</NavLink>
     </NavItem> */}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav >
-                                {/* <FaUserCircle size="1.80em" color="#C9D4F8"/> */}
-                               <span style={{color:"white"}}>My Account</span>  
-                            </DropdownToggle>
-                            
-                            <DropdownMenu right>
-                                {_.isEmpty(this.props.user)? (
-                                    <div>
-                                        <DropdownItem>
-                                        <Link to="/login"> Login </Link>
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                        <Link to="/register">Register </Link>
-                                        </DropdownItem>
-                                    </div>
-                                         ) : (
-                                        <div>
-                                            <DropdownItem>
-                                            <Link to="/account">Account </Link>
-                                            </DropdownItem>
-                                             <DropdownItem>
-                                            <Link to="/regEvents">My Bookings</Link>
-                                            </DropdownItem>
-                                            <DropdownItem divider />
-                                            <DropdownItem>
-                                            <button onClick={this.logouthandle}>Sign out</button>
-                                            <Link to="/logout">Sign out </Link>
-                                            </DropdownItem>
-                                        </div>
-                                  )}
+                  {/* <FaUserCircle size="1.80em" color="#C9D4F8"/> */}
+                  <span style={{ color: "white" }}>My Account</span>
+                </DropdownToggle>
+
+                <DropdownMenu right>
+                  {_.isEmpty(this.props.user) ? (
+                    <div>
+                      <DropdownItem>
+                        <Link to="/login"> Login </Link>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <Link to="/register">Register </Link>
+                      </DropdownItem>
+                    </div>
+                  ) : (
+                      <div>
+                        <DropdownItem>
+                          <Link to="/account">Account </Link>
+                        </DropdownItem>
+                        <DropdownItem>
+                          <Link to="/regEvents">My Bookings</Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem>
+                          <button onClick={this.logouthandle}>Sign out</button>
+                        </DropdownItem>
+                      </div>
+                    )}
 
                 </DropdownMenu>
               </UncontrolledDropdown>
@@ -88,9 +92,9 @@ class NavBar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {
-        user: state.user
-    }
+  return {
+    user: state.user
+  }
 }
 
 export default connect(mapStateToProps)(NavBar)
